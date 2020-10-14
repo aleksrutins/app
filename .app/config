@@ -1,0 +1,28 @@
+# Name to be shown in confirmation prompt
+name = "app";
+# Doesn't do anything yet
+author = "munchkinhalfling";
+
+# Shown if something goes wrong
+notify_dev_depends = ("Meson (sudo apt install meson)", "Ninja (included with Meson)", "A working C++ compiler");
+notify_depends = ("libconfig++ (sudo apt install libconfig++-dev)");
+# `app`-based packages to be installed first.
+depends = ();
+dev_depends = ();
+
+# A list of scripts for build and install.
+scripts:
+(
+    {
+        # Name of the script
+        name = "configure";
+        # Commands
+        commands = ("meson build");
+    },
+    {
+        name = "build";
+        commands = ("meson compile -C build");
+    }
+);
+
+install = ("DESTDIR=$prefix meson install -C build");
