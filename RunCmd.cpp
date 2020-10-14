@@ -1,0 +1,21 @@
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <libconfig.h++>
+#include "util.h"
+using namespace std;
+using namespace libconfig;
+
+namespace RunCmd {
+    int run(int argc, char **argv, string name, const Setting &cfgRoot, string env) {
+        for (int i = 0; i < cfgRoot["scripts"].getLength(); i++) {
+            const Setting &script = cfgRoot["scripts"][i];
+            cout << "\e[1;32mRunning \e[0;31m" << script["name"].c_str() << "\e[0m" << endl;
+            for (int j = 0; j < script["commands"].getLength(); j++) {
+                command::run(env, script["commands"][j].c_str());
+            }
+            if(string(script["name"].c_str()) == string(argv[2])) return 0;
+        }
+        return 0;
+    }
+}

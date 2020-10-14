@@ -17,12 +17,19 @@ scripts:
         # Name of the script
         name = "configure";
         # Commands
-        commands = ("meson build");
+        commands = ("rm -rf build", "meson build");
     },
     {
         name = "build";
-        commands = ("meson compile -C build");
+        commands = ("ninja -C build");
     }
 );
 
-install = ("DESTDIR=$prefix meson install -C build");
+install = ("DESTDIR=$prefix ninja -C build install");
+
+bin = (
+    {
+        pkg_path = "usr/local/bin/app";
+        name = "app";
+    }
+);
