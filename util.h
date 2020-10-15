@@ -2,11 +2,13 @@
 #define UTIL_H
 #include <string>
 #include <iostream>
+#include <libconfig.h++>
 namespace help {
     void printCmd(std::string, std::string, bool = true);
     void printHelp();
+    void printDepsError(const libconfig::Setting &);
 }
 namespace command {
-    void run(std::string, std::string);
+    int run(std::string, std::string);
 }
 #endif
