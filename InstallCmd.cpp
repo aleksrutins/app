@@ -55,6 +55,7 @@ namespace InstallCmd {
             cmd = cmd + actualSrcPath.c_str() + " " + installPath.c_str();
             system(mkdir_cmd.c_str());
             system(cmd.c_str());
+            localDir = "~/.local";
         }
         return 0;
     }
