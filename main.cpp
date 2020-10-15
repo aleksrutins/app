@@ -16,7 +16,9 @@ int main(int argc, char **argv) {
             cout << "\e[1;32mPulling \e[0;31m" << argv[2] << "\e[1;32m from GitHub...\e[0m" << endl;
             cout << "\e[1;32mPreparing directories...\e[0m" << endl;
             auto srcPath = fs::path(string(getenv("HOME")) + "/.local/share/app-pm/source/").concat(argv[2]);
+            string rmCmd = string("rm -rf ") + srcPath.c_str();
             string mkdirCmd = string("mkdir -p ") + srcPath.c_str();
+            command::run("true", rmCmd);
             command::run("true", mkdirCmd);
             cout << "\e[1;32mCloning...\e[0m" << endl;
             string gitCmd = string("git clone ") + "https://github.com/" + argv[2] + ".git" + " " + srcPath.c_str();
