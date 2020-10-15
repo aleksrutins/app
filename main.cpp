@@ -5,10 +5,25 @@
 #include "util.h"
 #include "InstallCmd.hpp"
 #include "RunCmd.hpp"
+#include <filesystem>
+#include <unistd.h>
 using namespace libconfig;
 using namespace std;
+namespace fs = std::filesystem;
 int main(int argc, char **argv) {
     try {
+        if (argc > 2 && string(argv[1]) == "install") {
+            cout << "\e[1;32mPulling \e[0;31m" << argv[2] << "\e[1;32m from GitHub...\e[0m" << endl;
+            cout << "\e[1;32mPreparing directories...\e[0m" << endl;
+            auto srcPath = fs::path(string(getenv("HOME")) + "/.local/share/app-pm/source/").concat(argv[2]);
+            string mkdirCmd = string("mkdir -p ") + srcPath.c_str();
+            command::run("true", mkdirCmd);
+            cout << "\e[1;32mCloning...\e[0m" << endl;
+            string gitCmd = string("git clone ") + "https://github.com/" + argv[2] + ".git" + " " + srcPath.c_str();
+            command::run("true", gitCmd);
+            cout << "\e[1;32mSwitching directories...\e[0m" << endl;
+            chdir(srcPath.c_str());
+        }
         cout << "\e[1;32mLoading config from \e[0;31m.app/config\e[0m" << endl;
         Config cfg;
         cfg.readFile(".app/config");

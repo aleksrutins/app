@@ -10,6 +10,7 @@ using namespace libconfig;
 namespace InstallCmd {
     int run(int argc, char **argv, string name, const Setting &cfgRoot, string env, string prefix) {
         help::printCmd("install", "Run all scripts and then install project");
+        
         cout << "\e[1;32mInstall \e[0;31m" << name << "\e[1;32m? \e[0;33m[y/N]\e[0m ";
         char choice = (char)cin.get();
         cout << endl;
