@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
         cout << "\e[1;32mProject name is \e[0;31m" << name << "\e[0m" << endl;
         string prefix = "~/.local/share/app-pm/install/" + name;
         system(("mkdir -p " + prefix).c_str());
-        string env = "prefix=" + prefix;
+        string env = "prefix=\"" + prefix + "\"";
 
         string cmd = argv[1];
         if(cmd == "list") {
