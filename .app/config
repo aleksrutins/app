@@ -25,11 +25,15 @@ scripts:
     }
 );
 
+# $prefix is the install root
 install = ("DESTDIR=$prefix ninja -C build install");
 
-bin = (
+# Binaries (and other files) to symlink
+files = (
     {
-        pkg_path = "usr/local/bin/app";
-        name = "app";
+        # Path to symlink to (with / being ~/.local/)
+        install_path = "/bin/app";
+        # Path to the file in the install root (with / being the install root)
+        pkg_path = "/usr/local/bin/app";
     }
 );

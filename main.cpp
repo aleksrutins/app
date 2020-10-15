@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
                 cout << "\e[1;32m - \e[0;31m" << scripts[i]["name"].c_str() << "\e[0m" << endl;
             };
         } else if (cmd == "install") {
-            return InstallCmd::run(argc, argv, name, cfgRoot, env);
+            return InstallCmd::run(argc, argv, name, cfgRoot, env, prefix);
         } else if (cmd == "run") {
             return RunCmd::run(argc, argv, name, cfgRoot, env);
         } else {
