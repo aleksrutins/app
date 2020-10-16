@@ -9,6 +9,6 @@ namespace help {
     void printDepsError(const libconfig::Setting &);
 }
 namespace command {
-    int run(std::string, std::string);
+    int run(std::string, std::string, bool = true);
 }
 #endif

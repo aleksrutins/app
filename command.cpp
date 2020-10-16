@@ -3,9 +3,9 @@
 #include "util.h"
 
 namespace command {
-    int run(std::string env, std::string cmd) {
+    int run(std::string env, std::string cmd, bool hasEnv) {
         using namespace std;
-        string fullCmd = "(" + env + "; " + cmd + ")";
+        string fullCmd = "(" + env + "; " + (hasEnv? env : "") + " " + cmd + ")";
         cout << "\e[1;33m% \e[0m\e[4;31m" << cmd << "\e[0m" << endl;
         return system(fullCmd.c_str());
     }

@@ -18,11 +18,11 @@ int main(int argc, char **argv) {
             auto srcPath = fs::path(string(getenv("HOME")) + "/.local/share/app-pm/source/").concat(argv[2]);
             string rmCmd = string("rm -rf ") + srcPath.c_str();
             string mkdirCmd = string("mkdir -p ") + srcPath.c_str();
-            command::run("true", rmCmd);
-            command::run("true", mkdirCmd);
+            command::run("true", rmCmd, false);
+            command::run("true", mkdirCmd, false);
             cout << "\e[1;32mCloning...\e[0m" << endl;
             string gitCmd = string("git clone ") + "https://github.com/" + argv[2] + ".git" + " " + srcPath.c_str();
-            command::run("true", gitCmd);
+            command::run("true", gitCmd, false);
             cout << "\e[1;32mSwitching directories...\e[0m" << endl;
             chdir(srcPath.c_str());
         }
