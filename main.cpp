@@ -26,6 +26,10 @@ int main(int argc, char **argv) {
             cout << "\e[1;32mSwitching directories...\e[0m" << endl;
             chdir(srcPath.c_str());
         }
+        if (argc < 2) {
+            help::printHelp();
+            return 1;
+        }
         cout << "\e[1;32mLoading config from \e[0;31m.app/config\e[0m" << endl;
         Config cfg;
         cfg.readFile(".app/config");
@@ -51,8 +55,13 @@ int main(int argc, char **argv) {
             return RunCmd::run(argc, argv, name, cfgRoot, env);
         } else {
             help::printHelp();
+            return 1;
         }
     } catch(std::logic_error) {
+        help::printHelp();
+        return 1;
+    } catch(libconfig::FileIOException) {
+        cout << "\e[1;31mCould not load config\e[0m" << endl;
         help::printHelp();
     }
     return 0;
