@@ -30,11 +30,11 @@ namespace InstallCmd {
             command::run("true", gitCmd);
             cout << "\e[1;32mSwitching directories...\e[0m" << endl;
             chdir(srcPath.c_str());
-            char *fakeArgv[] = {"app", "install", const_cast<char *>(dep.c_str())};
+            char *fakeArgv[] = {const_cast<char *>("app"), const_cast<char *>("install"), const_cast<char *>(dep.c_str())};
             Config cfg;
             try {
                 cfg.readFile(".app/config");
-            } catch(FileIOException) {
+            } catch(FileIOException &) {
                 return 1;
             }
             const Setting &newCfgRoot = cfg.getRoot();
@@ -58,11 +58,11 @@ namespace InstallCmd {
             command::run("true", gitCmd);
             cout << "\e[1;32mSwitching directories...\e[0m" << endl;
             chdir(srcPath.c_str());
-            char *fakeArgv[] = {"app", "install", const_cast<char *>(dep.c_str())};
+            char *fakeArgv[] = {const_cast<char *>("app"), const_cast<char *>("install"), const_cast<char *>(dep.c_str())};
             Config cfg;
             try {
                 cfg.readFile(".app/config");
-            } catch(FileIOException) {
+            } catch(FileIOException &) {
                 return 1;
             }
             const Setting &newCfgRoot = cfg.getRoot();

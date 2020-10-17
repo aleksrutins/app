@@ -57,10 +57,10 @@ int main(int argc, char **argv) {
             help::printHelp();
             return 1;
         }
-    } catch(std::logic_error) {
+    } catch(std::logic_error &) {
         help::printHelp();
         return 1;
-    } catch(libconfig::FileIOException) {
+    } catch(libconfig::FileIOException &) {
         cout << "\e[1;31mCould not load config\e[0m" << endl;
         help::printHelp();
     }
