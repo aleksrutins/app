@@ -8,17 +8,7 @@
 - Runtime
   - [libconfig++](https://github.com/hyperrealm/libconfig)
 ## Installation
-Bootstrap it! \
-First, build it:
-```sh
-$ meson build
-$ ninja -C build
-```
-Then, bootstrap:
-```sh
-$ ./build/app install
-```
-This will build it again, and then spit out a binary in `~/.local/bin`. Make sure that's in your `$PATH`.
+Clone this repository and run `install.sh`. This will notify you if any dependencies are not found.
 ## Updating
 Run:
 ```sh
